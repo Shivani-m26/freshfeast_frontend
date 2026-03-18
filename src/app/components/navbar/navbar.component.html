@@ -1,0 +1,19 @@
+<nav class="navbar">
+  <div class="nav-brand" routerLink="/">
+    <span class="logo-icon">🥗</span>
+    <span class="logo-text">FreshFeast</span>
+  </div>
+  
+  <ul class="nav-links">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+    <li><a routerLink="/plans" routerLinkActive="active">Plans</a></li>
+    <li><a routerLink="/bmi" routerLinkActive="active">BMI Calculator</a></li>
+    <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+    <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button *ngIf="!auth.isLoggedIn()" class="btn-auth" routerLink="/login">Login</button>
+    <button *ngIf="auth.isLoggedIn()" class="btn-logout" (click)="auth.logout()">Logout</button>
+  </div>
+</nav>

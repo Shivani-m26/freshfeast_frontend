@@ -1,0 +1,40 @@
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-header h2 { font-size: 2rem; margin-bottom: 5px; }
+.auth-header p { color: #636e72; }
+
+.auth-options {
+  margin-bottom: 25px;
+  text-align: right;
+}
+
+.auth-options a {
+  font-size: 0.9rem;
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+.auth-footer {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.auth-footer a {
+  color: #2ecc71;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.error-msg {
+  margin-top: 20px;
+  color: #eb4d4b;
+  text-align: center;
+  font-size: 0.9rem;
+  background: #fff5f5;
+  padding: 10px;
+  border-radius: 8px;
+}

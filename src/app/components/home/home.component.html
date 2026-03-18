@@ -1,0 +1,43 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Fuel Your Body <br> <span class="accent">With Home-Cooked Goodness</span></h1>
+      <p>Subscribe to customized meal plans tailored to your goals, health, and lifestyle. Freshness delivered daily.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" routerLink="/plans">Explore Plans</button>
+        <button class="btn-secondary" routerLink="/bmi">Check Your BMI</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&q=80&w=800" alt="Healthy Food">
+    </div>
+  </section>
+
+  <!-- Carousel Section -->
+  <section class="importance-carousel">
+    <h2>Why Balanced Meals Matter?</h2>
+    <div class="carousel">
+      <div class="carousel-item" *ngFor="let fact of facts; let i = index" [hidden]="currentFact !== i">
+        <div class="fact-card">
+          <span class="fact-icon">{{fact.icon}}</span>
+          <h3>{{fact.title}}</h3>
+          <p>{{fact.description}}</p>
+        </div>
+      </div>
+      <div class="carousel-controls">
+        <button (click)="prev()">❮</button>
+        <button (click)="next()">❯</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="cta-card">
+      <h2>Ready to transform your health?</h2>
+      <button class="btn-large" routerLink="/signup">Join Now</button>
+    </div>
+  </section>
+</div>
+<app-footer></app-footer>

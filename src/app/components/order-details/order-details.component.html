@@ -1,0 +1,56 @@
+<div class="order-container section-padding">
+  <div class="glass-card">
+    <div class="checkout-header">
+      <h2>Order Details</h2>
+      <p>Securely finalize your delivery preference.</p>
+    </div>
+
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label>Enter Recipient Full Name</label>
+        <input type="text" class="form-control" [(ngModel)]="orderDetails.fullName" name="fullName" required placeholder="Full Name">
+      </div>
+
+      <div class="form-group">
+        <label>Contact Number (Mobile)</label>
+        <div class="phone-input-group">
+          <select [(ngModel)]="orderDetails.contactPrefix" name="prefix" class="prefix-select">
+            <option *ngFor="let c of countries" [value]="c.code">{{ c.code }} ({{ c.name }})</option>
+          </select>
+          <input type="tel" class="form-control" [(ngModel)]="orderDetails.contactNumber" name="contactNumber" required placeholder="XXXXX-XXXXX">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Delivery Address (Street/Building)</label>
+        <textarea class="form-control" [(ngModel)]="orderDetails.deliveryAddress" name="address" required rows="3" placeholder="House No, Street name, Area"></textarea>
+      </div>
+
+      <div class="row">
+        <div class="form-group col">
+          <label>Select City</label>
+          <select class="form-control" [(ngModel)]="orderDetails.city" name="city" (change)="onCityChange()" required>
+            <option value="">-- Select City --</option>
+            <option *ngFor="let c of cities" [value]="c.name">{{ c.name }}</option>
+          </select>
+        </div>
+        <div class="form-group col">
+          <label>Pincode (Auto-fetched)</label>
+          <input type="text" class="form-control" [(ngModel)]="orderDetails.pincode" name="pincode" required placeholder="XXXXXX">
+        </div>
+      </div>
+
+      <!-- Plan Recap Display -->
+      <div class="plan-summary mt-30" *ngIf="selectedPlan">
+        <h4>📦 {{ selectedPlan.planType }} Plan Summary</h4>
+        <div class="summary-details">
+          <p>{{ selectedPlan.mealsPerDay }} meals daily provided with {{ selectedPlan.proteinAmount }} protein.</p>
+          <p>Frequency: <strong>{{ selectedPlan.frequency }}</strong></p>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary mt-30">Lock Order & Proceed to Payment</button>
+      <button type="button" class="btn-secondary mt-10" routerLink="/plans">Change Plan</button>
+    </form>
+  </div>
+</div>

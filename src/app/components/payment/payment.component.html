@@ -1,0 +1,80 @@
+<div class="payment-container section-padding">
+  <div class="glass-card">
+    <h1>Complete Payment</h1>
+    <p>Choose your payment method and verify to complete the order.</p>
+
+    <div class="payment-selection">
+      <div class="tab" [class.active]="paymentMethod === 'card'" (click)="paymentMethod = 'card'">
+        <i class="fas fa-credit-card"></i> Card
+      </div>
+      <div class="tab" [class.active]="paymentMethod === 'upi'" (click)="paymentMethod = 'upi'">
+        <i class="fas fa-mobile-alt"></i> UPI/GPay
+      </div>
+      <div class="tab" [class.active]="paymentMethod === 'netbanking'" (click)="paymentMethod = 'netbanking'">
+        <i class="fas fa-university"></i> Net Banking
+      </div>
+    </div>
+
+    <!-- Payment Forms -->
+    <div class="payment-form" *ngIf="paymentMethod === 'card'">
+      <div class="form-group">
+        <label>Card Number</label>
+        <input type="text" class="form-control" placeholder="**** **** **** ****" [(ngModel)]="cardDetails.cardNumber" name="cardNo">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Expiry Date</label>
+          <input type="text" class="form-control" placeholder="MM/YY" [(ngModel)]="cardDetails.expiry" name="expiry">
+        </div>
+        <div class="form-group">
+          <label>CVV</label>
+          <input type="password" class="form-control" placeholder="***" [(ngModel)]="cardDetails.cvv" name="cvv">
+        </div>
+      </div>
+    </div>
+
+    <div class="payment-form" *ngIf="paymentMethod === 'upi'">
+      <div class="form-group">
+        <label>Enter UPI ID (GPay/Paytm)</label>
+        <input type="text" class="form-control" placeholder="username&#64;upi" [(ngModel)]="upiId" name="upi">
+      </div>
+    </div>
+
+    <div class="payment-form" *ngIf="paymentMethod === 'netbanking'">
+      <div class="form-group">
+        <label>Select Your Bank</label>
+        <select class="form-control" [(ngModel)]="netBankingBank">
+          <option value="">Choose Bank</option>
+          <option value="HDFC">HDFC Bank</option>
+          <option value="SBI">SBI Bank</option>
+          <option value="ICICI">ICICI Bank</option>
+          <option value="AXIS">Axis Bank</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Captcha -->
+    <div class="captcha-section mt-20">
+      <label>Security Check (Verification Code)</label>
+      <div class="captcha-box">
+        <span class="captcha-text">{{ captchaCode }}</span>
+        <button type="button" class="btn-refresh" (click)="generateCaptcha()">🔄 Refresh</button>
+      </div>
+      <input type="text" class="form-control mt-10" placeholder="Type letters above" [(ngModel)]="userCaptchaInput">
+    </div>
+
+    <button class="btn-primary mt-30" (click)="processPayment()" [disabled]="processing">
+      {{ processing ? 'Processing...' : 'Pay with Security' }}
+    </button>
+  </div>
+</div>
+
+<!-- Success Popup -->
+<div class="success-overlay" *ngIf="paymentSuccess">
+  <div class="popup-content">
+    <div class="check-icon">✓</div>
+    <h2>Payment Successful!</h2>
+    <p>Your subscription is now active. Refirecting to dashboard...</p>
+    <div class="loader-line"></div>
+  </div>
+</div>

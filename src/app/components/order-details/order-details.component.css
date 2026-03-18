@@ -1,0 +1,99 @@
+.order-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #fdfdfd;
+}
+
+.checkout-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.checkout-header h2 {
+  font-size: 2rem;
+  color: #2d3436;
+}
+
+.checkout-header p {
+  color: #636e72;
+}
+
+.form-group {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #4b6584;
+  font-size: 0.9rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #f1f2f6;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: 0.3s;
+  color: #2d3436;
+}
+
+.phone-input-group {
+  display: flex;
+  border: 2px solid #f1f2f6;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.prefix-select {
+  border: none;
+  background: #f8f9fa;
+  padding: 0 15px;
+  border-right: 2px solid #f1f2f6;
+  font-weight: 700;
+  color: #ff7f50;
+  outline: none;
+}
+
+.phone-input-group .form-control {
+  border: none;
+  border-radius: 0;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.col {
+  flex: 1;
+}
+
+.plan-summary {
+  margin-top: 25px;
+  padding: 20px;
+  background-color: #fff5f0;
+  border-radius: 12px;
+  border: 1px dashed #ff7f50;
+  margin-bottom: 30px;
+}
+
+.plan-summary h4 {
+  color: #ff7f50;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.plan-summary p {
+  font-weight: 500;
+  margin-bottom: 5px;
+}

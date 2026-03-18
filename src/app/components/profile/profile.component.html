@@ -1,0 +1,118 @@
+<div class="profile-container section-padding" *ngIf="profile">
+  <div class="container">
+    <div class="profile-layout">
+      
+      <!-- User Info Sidebar -->
+      <aside class="profile-sidebar glass-card">
+        <div class="user-meta">
+          <div class="avatar-large">{{ profile.fullName.charAt(0) }}</div>
+          <h2>{{ profile.fullName }}</h2>
+          <p class="email">&#64;{{ profile.username }}</p>
+        </div>
+
+        <div class="user-info-list">
+          <div class="info-item">
+            <span>Age:</span>
+            <strong>{{ profile.age }} yrs</strong>
+          </div>
+          <div class="info-item">
+            <span>Gender:</span>
+            <strong>{{ profile.gender }}</strong>
+          </div>
+          <div class="info-item">
+            <span>Member since:</span>
+            <strong>Mar 2026</strong>
+          </div>
+        </div>
+
+        <button class="btn-logout-alt mt-30" (click)="auth.logout()">Logout Account</button>
+      </aside>
+
+      <!-- Dashboard Main -->
+      <main class="dashboard-main">
+        <div class="dashboard-top">
+          <h1>Plans Dashboard</h1>
+          <p>Manage your active meals and view history.</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Active Card -->
+          <div class="card active-plan" *ngIf="profile.currentSubscription">
+            <div class="card-header">
+              <span class="badge active">ACTIVE</span>
+              <span class="plan-name">{{ profile.currentSubscription.planType }} FEAST</span>
+            </div>
+            <div class="card-body">
+              <div class="plan-metric">
+                <span class="val">{{ profile.currentSubscription.mealsPerDay }}</span>
+                <span class="label">Meals/Day</span>
+              </div>
+              <div class="plan-metric">
+                <span class="val">{{ profile.currentSubscription.proteinAmount }}</span>
+                <span class="label">Protein</span>
+              </div>
+              <div class="plan-metric" *ngIf="profile.currentSubscription.suggestedCalories">
+                <span class="val">{{ profile.currentSubscription.suggestedCalories }}</span>
+                <span class="label">Daily Cal</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- No Active -->
+          <div class="card no-plan" *ngIf="!profile.currentSubscription">
+             <div class="no-plan-icon">🥗</div>
+             <h3>No Active Plan</h3>
+             <button class="btn-primary mt-10" routerLink="/plans">Get a Plan</button>
+          </div>
+
+          <!-- History Table -->
+          <div class="card history-card">
+            <h3>Subscription History</h3>
+            <div class="history-list">
+              <div class="history-item" *ngFor="let sub of profile.subscriptions" 
+                   [class.selected]="selectedPlanDetails?.id === sub.id"
+                   (click)="showDetails(sub)">
+                <div class="sub-icon">🍽️</div>
+                <div class="sub-info">
+                   <strong>{{ sub.planType }}</strong>
+                   <span>{{ sub.startDate | date }}</span>
+                </div>
+                <div class="sub-status" [class.success]="sub.status === 'ACTIVE'">{{ sub.status }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detail Modal View -->
+        <div class="detail-viewer" *ngIf="selectedPlanDetails">
+           <div class="viewer-card">
+              <h3>Detailed View: #{{ selectedPlanDetails.id }}</h3>
+              <div class="viewer-grid">
+                 <div>
+                    <label>Registration Date</label>
+                    <p>{{ selectedPlanDetails.startDate | date:'fullDate' }}</p>
+                 </div>
+                 <div>
+                    <label>Address Info</label>
+                    <p>{{ selectedPlanDetails.deliveryAddress }}</p>
+                 </div>
+                 <div>
+                    <label>Payment Method</label>
+                    <p>Verified (Ref: {{ selectedPlanDetails.paymentReference }})</p>
+                 </div>
+                 <div>
+                    <label>Preferences</label>
+                    <div class="tag-row">
+                      <span class="tag-mini">{{ selectedPlanDetails.preference }}</span>
+                      <span class="tag-mini">{{ selectedPlanDetails.goal }}</span>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

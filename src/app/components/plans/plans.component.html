@@ -1,0 +1,172 @@
+<div class="plans-container" *ngIf="step === 1">
+  <div class="section-title">
+    <h1>Choose Your Plan</h1>
+    <p>Flexible options for every lifestyle</p>
+  </div>
+
+  <div class="plans-grid">
+    <!-- Basic Plan -->
+    <div class="plan-card" (click)="selectPlan('BASIC')">
+      <div class="plan-badge basic">Popular</div>
+      <h3>Basic Feast</h3>
+      <div class="price">₹50 <span>/meal</span></div>
+      <ul>
+        <li>Normal Home Meals</li>
+        <li>Breakfast & Dinner</li>
+        <li>Standard Nutrients</li>
+        <li>Free Delivery</li>
+      </ul>
+      <button class="btn-select">Order Now</button>
+    </div>
+
+    <!-- Pro Plan -->
+    <div class="plan-card pro" (click)="selectPlan('PRO')">
+      <div class="plan-badge premium">Protein Rich</div>
+      <h3>Pro Performance</h3>
+      <div class="price">From ₹100 <span>/meal</span></div>
+      <ul>
+        <li>Adjustable Protein</li>
+        <li>Muscle Recovery Focus</li>
+        <li>High Quality Ingredients</li>
+        <li>Priority Delivery</li>
+      </ul>
+      <button class="btn-select">Customize Pro</button>
+    </div>
+
+    <!-- Customized Plan -->
+    <div class="plan-card custom" (click)="selectPlan('CUSTOMIZED')">
+      <div class="plan-badge expert">Smart Logic</div>
+      <h3>Smart Custom</h3>
+      <div class="price">From ₹150 <span>/meal</span></div>
+      <ul>
+        <li>BMI-Based Calories</li>
+        <li>Dietitian Menu</li>
+        <li>Allergy Management</li>
+        <li>Full Health Tracking</li>
+      </ul>
+      <button class="btn-select">Analyze Me</button>
+    </div>
+  </div>
+</div>
+
+<!-- Step 2: Customization Wizard -->
+<div class="wizard-container" *ngIf="step === 2">
+  <div class="glass-card wide">
+    <button class="btn-back" (click)="step = 1">← Change Plan</button>
+    
+    <h2>Customize your <span>{{selectedPlan}}</span> Plan</h2>
+
+    <!-- Basic/Pro shared selection -->
+    <div class="wizard-sections" *ngIf="selectedPlan !== 'CUSTOMIZED'">
+      
+      <!-- Protein for Pro -->
+      <div class="wizard-section" *ngIf="selectedPlan === 'PRO'">
+        <label>Select Protein Amount (per meal)</label>
+        <div class="option-grid">
+          <div class="opt" [class.active]="protein === '50g'" (click)="protein = '50g'">50g (+₹50)</div>
+          <div class="opt" [class.active]="protein === '100g'" (click)="protein = '100g'">100g (+₹70)</div>
+          <div class="opt" [class.active]="protein === '150g'" (click)="protein = '150g'">150g (+₹100)</div>
+          <div class="opt" [class.active]="protein === '>150g'" (click)="protein = '>150g'">>150g (+₹150)</div>
+        </div>
+      </div>
+
+      <!-- Frequency -->
+      <div class="wizard-section">
+        <label>How many meals per day?</label>
+        <div class="option-grid">
+          <div class="opt" [class.active]="numMeals === 1" (click)="numMeals = 1">1 Meal</div>
+          <div class="opt" [class.active]="numMeals === 2" (click)="numMeals = 2">2 Meals</div>
+          <div class="opt" [class.active]="numMeals === 3" (click)="numMeals = 3">3 Meals</div>
+        </div>
+      </div>
+
+      <div class="wizard-section">
+        <label>Delivery Frequency</label>
+        <div class="option-grid">
+          <div class="opt" [class.active]="freq === 'ALL'" (click)="freq = 'ALL'">Full Month</div>
+          <div class="opt" [class.active]="freq === 'WEEKDAYS'" (click)="freq = 'WEEKDAYS'">Weekdays</div>
+          <div class="opt" [class.active]="freq === 'WEEKENDS'" (click)="freq = 'WEEKENDS'">Weekends</div>
+        </div>
+      </div>
+
+      <div class="wizard-section">
+        <label>Delivery Timings</label>
+        <div class="timing-grid">
+          <div class="timing">
+             <span>Breakfast (8-11am)</span>
+             <input type="time" class="form-control" [(ngModel)]="timings.breakfast">
+          </div>
+          <div class="timing">
+             <span>Lunch (12-3pm)</span>
+             <input type="time" class="form-control" [(ngModel)]="timings.lunch">
+          </div>
+          <div class="timing">
+             <span>Dinner (7-10pm)</span>
+             <input type="time" class="form-control" [(ngModel)]="timings.dinner">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customized Plan Inputs -->
+    <div class="wizard-sections" *ngIf="selectedPlan === 'CUSTOMIZED'">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Height (cm)</label>
+          <input type="number" [(ngModel)]="customData.height" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Weight (kg)</label>
+          <input type="number" [(ngModel)]="customData.weight" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Preference</label>
+          <select [(ngModel)]="customData.preference" class="form-control">
+            <option value="VEG">Veg</option>
+            <option value="NON_VEG">Non-Veg</option>
+            <option value="VEGAN">Vegan</option>
+            <option value="EGGETARIAN">Eggetarian</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Goal</label>
+          <select [(ngModel)]="customData.goal" class="form-control">
+            <option value="WEIGHT_LOSS">Weight Loss</option>
+            <option value="FAT_LOSS">Fat Loss</option>
+            <option value="WEIGHT_GAIN">Weight Gain</option>
+            <option value="MUSCLE_UP">Muscle Up</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="wizard-section">
+        <label>Health Issues (Multiple)</label>
+        <div class="health-tags">
+          <div class="tag" *ngFor="let issue of healthList" 
+               [class.active]="customData.healthIssues.includes(issue)"
+               (click)="toggleHealth(issue)">
+            {{issue}}
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn-primary" (click)="analyzePlan()">Calculate Nutrition</button>
+      
+      <div class="analysis-result" *ngIf="analysis">
+         <h3>Recommendations:</h3>
+         <p>Target: <strong>{{analysis.suggestedCalories}} kcal/day</strong></p>
+         <p>BMI: <strong>{{analysis.bmi}} ({{analysis.bmiCategory}})</strong></p>
+         <p class="suggestion">{{analysis.suggestion}}</p>
+      </div>
+    </div>
+
+    <!-- Summary & Payment -->
+    <div class="summary-card" *ngIf="selectedPlan !== 'CUSTOMIZED' || analysis">
+      <div class="flex-row">
+        <span>Total Estimated:</span>
+        <span class="total-price">₹{{calculatePrice()}}</span>
+      </div>
+      <button class="btn-primary" (click)="onProceed()" style="margin-top: 20px;">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>

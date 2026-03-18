@@ -1,0 +1,64 @@
+<div class="contact-container section-padding">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h1>Get in Touch</h1>
+        <p>Have questions about our plans or your subscription? We're here to help!</p>
+        
+        <div class="info-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h3>Address</h3>
+            <p>123 Fresh Lane, Mumbai, Maharashtra 400001</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <h3>Phone</h3>
+            <p>+91 98765 43210</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h3>Email</h3>
+            <p>support&#64;freshfeast.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form glass-card">
+        <form (submit)="onSubmit()">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" class="form-control" [(ngModel)]="contactData.name" name="name" required placeholder="John Doe">
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" [(ngModel)]="contactData.email" name="email" required placeholder="john@example.com">
+          </div>
+
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" class="form-control" [(ngModel)]="contactData.subject" name="subject" required placeholder="Question about Plans">
+          </div>
+
+          <div class="form-group">
+            <label>Message</label>
+            <textarea class="form-control" [(ngModel)]="contactData.message" name="message" required rows="5" placeholder="Tell us more..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" [disabled]="submitted">
+            {{ submitted ? 'Sending...' : 'Send Message' }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
