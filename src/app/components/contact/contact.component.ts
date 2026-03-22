@@ -32,7 +32,7 @@ export class ContactComponent {
     this.http.post(`${config.apiUrl}/contact`, this.contactData).subscribe({
       next: (res: any) => {
         console.log('--- SERVER RESPONSE RECEIVED ---', res);
-        alert('Thank you for contacting us! We will reach out to you soon.');
+        alert(res.message || 'Thank you for contacting us! We will reach out to you soon.');
         this.contactData = { name: '', email: '', subject: '', message: '' };
         this.submitted = false;
       },
