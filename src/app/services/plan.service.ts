@@ -16,9 +16,11 @@ export class PlanService {
 
   getHeaders() {
     const token = this.auth.currentUser()?.token;
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
   }
 
   createSubscription(data: any) {
