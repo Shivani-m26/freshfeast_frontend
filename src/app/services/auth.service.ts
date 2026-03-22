@@ -2,12 +2,13 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
+import { config } from '../app.config.base';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = `${config.apiUrl}/auth`;
   
   currentUser = signal<any>(null);
 
@@ -21,7 +22,7 @@ export class AuthService {
   getProfile() {
     const token = this.currentUser()?.token;
     const headers = { 'Authorization': `Bearer ${token}` };
-    return this.http.get('http://localhost:8080/api/profile', { headers });
+    return this.http.get(`${config.apiUrl}/profile`, { headers });
   }
 
   register(data: any) {

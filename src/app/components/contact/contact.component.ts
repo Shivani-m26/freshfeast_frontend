@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { FooterComponent } from '../footer/footer.component';
+import { config } from '../../app.config.base';
 
 @Component({
   selector: 'app-contact',
@@ -28,7 +29,7 @@ export class ContactComponent {
     console.log('Sending data:', JSON.stringify(this.contactData));
 
     this.submitted = true;
-    this.http.post('http://localhost:8080/api/contact', this.contactData).subscribe({
+    this.http.post(`${config.apiUrl}/contact`, this.contactData).subscribe({
       next: (res: any) => {
         console.log('--- SERVER RESPONSE RECEIVED ---', res);
         alert('Thank you for contacting us! We will reach out to you soon.');

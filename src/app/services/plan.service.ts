@@ -1,12 +1,13 @@
 import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { config } from '../app.config.base';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanService {
-  private apiUrl = 'http://localhost:8080/api/subscriptions';
+  private apiUrl = `${config.apiUrl}/subscriptions`;
   
   // To store state during the checkout process
   selectedPlan = signal<any>(null);
@@ -32,7 +33,7 @@ export class PlanService {
   }
 
   calculateCalories(data: any) {
-    return this.http.post('http://localhost:8080/api/calculate', data, { headers: this.getHeaders() });
+    return this.http.post(`${config.apiUrl}/calculate`, data, { headers: this.getHeaders() });
   }
 
   cancelSubscription(id: number) {
