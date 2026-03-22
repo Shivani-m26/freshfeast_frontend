@@ -12,11 +12,11 @@ import { FooterComponent } from '../footer/footer.component';
   styleUrls: ['./bmi-calculator.component.css']
 })
 export class BmiCalculatorComponent {
-  calcData = {
+  calcData: any = {
     gender: 'MALE',
-    age: 25,
-    height: 170,
-    weight: 70,
+    age: null,
+    height: null,
+    weight: null,
     goal: 'MAINTAIN'
   };
 

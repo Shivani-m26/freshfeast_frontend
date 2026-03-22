@@ -54,7 +54,7 @@
             <textarea class="form-control" [(ngModel)]="contactData.message" name="message" required rows="5" placeholder="Tell us more..."></textarea>
           </div>
 
-          <button type="submit" class="btn-primary" [disabled]="submitted">
+          <button type="submit" class="btn-primary" [disabled]="submitted || !contactForm.form.valid">
             {{ submitted ? 'Sending...' : 'Send Message' }}
           </button>
         </form>
