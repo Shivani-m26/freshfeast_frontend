@@ -101,10 +101,18 @@
                     <p>Verified (Ref: {{ selectedPlanDetails.paymentReference }})</p>
                  </div>
                  <div>
-                    <label>Preferences</label>
-                    <div class="tag-row">
-                      <span class="tag-mini">{{ selectedPlanDetails.preference }}</span>
-                      <span class="tag-mini">{{ selectedPlanDetails.goal }}</span>
+                    <label>Action & Control</label>
+                    <div class="action-row mt-10">
+                      <button *ngIf="selectedPlanDetails.status === 'PENDING'" 
+                              class="btn-pay-now" 
+                              (click)="goToPayment(selectedPlanDetails.id)">
+                        Pay & Activate Now
+                      </button>
+                      
+                      <button class="btn-cancel-plan" 
+                              (click)="cancelPlan(selectedPlanDetails.id)">
+                        Cancel / Delete History
+                      </button>
                     </div>
                  </div>
               </div>

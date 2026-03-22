@@ -34,4 +34,8 @@ export class PlanService {
   calculateCalories(data: any) {
     return this.http.post('http://localhost:8080/api/calculate', data, { headers: this.getHeaders() });
   }
+
+  cancelSubscription(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`, { headers: this.getHeaders() });
+  }
 }

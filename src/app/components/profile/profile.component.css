@@ -41,7 +41,15 @@
 .viewer-grid label { font-size: 0.85rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; }
 .viewer-grid p { font-size: 1.1rem; font-weight: 600; color: var(--dark-bg); margin-top: 8px; }
 
+.tag-row { display: flex; flex-wrap: wrap; margin-top: 10px; }
 .tag-mini { background: #f8fafe; color: #4834d4; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-right: 8px; border: 1px solid #dcdde1; }
+
+.action-row { display: flex; gap: 15px; margin-top: 20px; }
+.btn-pay-now { background: var(--primary-orange); color: white; border: none; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.btn-pay-now:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255,127,80,0.3); }
+
+.btn-cancel-plan { background: white; color: #ff7675; border: 1px solid #ff7675; padding: 10px 20px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.btn-cancel-plan:hover { background: #fff5f5; }
 
 @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
